@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarCat - Məxfilik Siyasəti | Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #0f0f0f;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #e0e0e0;
+            --border: #2a2a2a;
+            --border-light: #333333;
+            --gradient-1: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            --gradient-2: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Noise Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            padding: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--text-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        .lang-btn.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .lang-btn.active:hover {
+            color: var(--bg-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 2rem 6rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #ffffff 0%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-family: 'Space Mono', monospace;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--text-muted), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--text-primary);
+            animation: scrollDown 1.5s infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(40px); }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-number::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            max-width: 100px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .subsection h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* Lists */
+        .data-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .data-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .data-list li:hover {
+            border-color: var(--border-light);
+            transform: translateX(8px);
+            background: var(--bg-tertiary);
+        }
+
+        .list-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .list-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--accent);
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+        }
+
+        .info-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+        }
+
+        .contact-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
+
+        .contact-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            border-color: var(--text-primary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .lang-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+                min-height: 50vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .subsection {
+                padding-left: 1rem;
+            }
+
+            .data-list li {
+                padding: 0.875rem 1rem;
+            }
+
+            .info-card {
+                padding: 1.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden content for language switching */
+        [data-lang="en"] {
+            display: none;
+        }
+
+        html[lang="en"] [data-lang="az"] {
+            display: none !important;
+        }
+
+        html[lang="en"] [data-lang="en"] {
+            display: inline;
+        }
+
+        html[lang="en"] p[data-lang="en"] {
+            display: block;
+        }
+
+        html[lang="en"] .data-list[data-lang="en"] {
+            display: flex;
+        }
+
+        html[lang="en"] .contact-grid[data-lang="en"] {
+            display: grid;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <header>
+        <div class="logo">
+            <div class="logo-icon">CC</div>
+            <div class="logo-text">CarCat <span>Privacy</span></div>
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang-switch="az">AZ</button>
+            <button class="lang-btn" data-lang-switch="en">EN</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span data-lang="az">Son yenilənmə: Fevral 2025</span>
+            <span data-lang="en">Last updated: February 2025</span>
+        </div>
+        <h1>
+            <span data-lang="az"><span class="highlight">Məxfilik</span> Siyasəti</span>
+            <span data-lang="en"><span class="highlight">Privacy</span> Policy</span>
+        </h1>
+        <p class="hero-subtitle">
+            <span data-lang="az">Şəxsi məlumatlarınızın qorunması bizim üçün prioritetdir. Bu sənəd məlumatlarınızın necə toplandığını və istifadə edildiyini izah edir.</span>
+            <span data-lang="en">Protecting your personal information is our priority. This document explains how your data is collected and used.</span>
+        </p>
+        <div class="scroll-indicator">
+            <span data-lang="az">AŞAĞI SÜRÜŞDÜR</span>
+            <span data-lang="en">SCROLL DOWN</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Section 1: Introduction -->
+        <section class="section" data-section="1">
+            <div class="section-number">01</div>
+            <h2>
+                <span data-lang="az">Giriş</span>
+                <span data-lang="en">Introduction</span>
+            </h2>
+            <p data-lang="az">
+                Rəqəmsal İnnovasiyalar Agentliyi MMC (bundan sonra "Şirkət", "biz" və ya "bizim") olaraq, CarCat mobil tətbiqinin (bundan sonra "Tətbiq") istifadəçilərinin məxfiliyinə hörmət edir və şəxsi məlumatlarınızın qorunmasını təmin etməyi öhdəsinə götürür.
+            </p>
+            <p data-lang="en">
+                Digital Innovation Agency LLC (hereinafter referred to as "Company", "we", or "our") respects the privacy of users of the CarCat mobile application (hereinafter referred to as "Application") and is committed to protecting your personal data.
+            </p>
+            <p data-lang="az">
+                Bu Məxfilik Siyasəti, Tətbiqdən istifadə edərkən hansı məlumatları topladığımızı, bu məlumatları necə istifadə etdiyimizi, kimlərlə paylaşdığımızı və məlumatlarınızı necə qoruduğumuzu izah edir.
+            </p>
+            <p data-lang="en">
+                This Privacy Policy explains what information we collect when you use the Application, how we use this information, with whom we share it, and how we protect your data.
+            </p>
+        </section>
+
+        <!-- Section 2: Information We Collect -->
+        <section class="section" data-section="2">
+            <div class="section-number">02</div>
+            <h2>
+                <span data-lang="az">Toplanan Məlumatlar</span>
+                <span data-lang="en">Information We Collect</span>
+            </h2>
+            
+            <div class="subsection">
+                <h3>
+                    <span data-lang="az">Şəxsi Məlumatlar</span>
+                    <span data-lang="en">Personal Information</span>
+                </h3>
+                <p data-lang="az">Tətbiqdə qeydiyyatdan keçərkən və xidmətlərimizdən istifadə edərkən aşağıdakı şəxsi məlumatları toplayırıq:</p>
+                <p data-lang="en">When you register and use our services, we collect the following personal information:</p>
+                
+                <ul class="data-list" data-lang="az">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                        <span>Ad və soyad</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                        <span>Telefon nömrəsi</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                        <span>E-poçt ünvanı (əgər təqdim edilərsə)</span>
+                    </li>
+                </ul>
+
+                <ul class="data-list" data-lang="en">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                        <span>First and last name</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                        <span>Phone number</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                        <span>Email address (if provided)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>
+                    <span data-lang="az">Avtomobil Məlumatları</span>
+                    <span data-lang="en">Vehicle Information</span>
+                </h3>
+                <p data-lang="az">Xidmətlərimizi təmin etmək üçün aşağıdakı avtomobil məlumatlarını toplayırıq:</p>
+                <p data-lang="en">To provide our services, we collect the following vehicle information:</p>
+                
+                <ul class="data-list" data-lang="az">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                        <span>VIN (Avtomobil İdentifikasiya Nömrəsi) kodu</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+                        <span>Avtomobilin markası, modeli və buraxılış ili</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+                        <span>Servis tarixçəsi və qeydləri</span>
+                    </li>
+                </ul>
+
+                <ul class="data-list" data-lang="en">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                        <span>VIN (Vehicle Identification Number)</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+                        <span>Vehicle make, model, and year</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+                        <span>Service history and records</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>
+                    <span data-lang="az">Texniki Məlumatlar</span>
+                    <span data-lang="en">Technical Information</span>
+                </h3>
+                <p data-lang="az">Tətbiqin düzgün işləməsi üçün aşağıdakı texniki məlumatlara giriş tələb oluna bilər:</p>
+                <p data-lang="en">For the proper functioning of the Application, access to the following may be required:</p>
+                
+                <ul class="data-list" data-lang="az">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+                        <span>Kamera (VIN kodunun skan edilməsi üçün)</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                        <span>Push bildirişləri (servis xatırlatmaları və yeniləmələr üçün)</span>
+                    </li>
+                </ul>
+
+                <ul class="data-list" data-lang="en">
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+                        <span>Camera (for scanning VIN codes)</span>
+                    </li>
+                    <li>
+                        <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                        <span>Push notifications (for service reminders and updates)</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: Use of Information -->
+        <section class="section" data-section="3">
+            <div class="section-number">03</div>
+            <h2>
+                <span data-lang="az">Məlumatların İstifadəsi</span>
+                <span data-lang="en">Use of Information</span>
+            </h2>
+            <p data-lang="az">Topladığımız məlumatları aşağıdakı məqsədlər üçün istifadə edirik:</p>
+            <p data-lang="en">We use the collected information for the following purposes:</p>
+            
+            <ul class="data-list" data-lang="az">
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span>
+                    <span>İstifadəçi hesabının yaradılması və idarə edilməsi</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <span>Avtoservislərdə rezervasiya xidmətinin təmin edilməsi</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                    <span>Avtomobilin servis tarixçəsinin izlənilməsi</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                    <span>Servis xatırlatmaları və bildirişlərin göndərilməsi</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Müştəri dəstəyi xidmətinin göstərilməsi</span>
+                </li>
+            </ul>
+
+            <ul class="data-list" data-lang="en">
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span>
+                    <span>Creating and managing user accounts</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <span>Providing booking services at auto service centers</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                    <span>Tracking vehicle service history</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                    <span>Sending service reminders and notifications</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Providing customer support</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 4: Information Sharing -->
+        <section class="section" data-section="4">
+            <div class="section-number">04</div>
+            <h2>
+                <span data-lang="az">Məlumatların Paylaşılması</span>
+                <span data-lang="en">Information Sharing</span>
+            </h2>
+            <p data-lang="az">Şəxsi məlumatlarınızı üçüncü tərəf şirkətlərlə satmır və ya kommersiya məqsədilə paylaşmırıq.</p>
+            <p data-lang="en">We do not sell or share your personal information with third-party companies for commercial purposes.</p>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h4>
+                        <span data-lang="az">Avtoservislərlə</span>
+                        <span data-lang="en">With Auto Service Centers</span>
+                    </h4>
+                </div>
+                <p data-lang="az">Rezervasiya etdiyiniz avtoservisə adınız, soyadınız və telefon nömrəniz servis xidmətinin təmin edilməsi məqsədilə ötürülə bilər.</p>
+                <p data-lang="en">Your name, surname, and phone number may be shared with the auto service center where you make a reservation for the purpose of providing service.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>
+                        <span data-lang="az">Qanuni Tələblər</span>
+                        <span data-lang="en">Legal Requirements</span>
+                    </h4>
+                </div>
+                <p data-lang="az">Azərbaycan Respublikasının qanunvericiliyi tələb etdikdə, məlumatlar müvafiq dövlət orqanlarına təqdim edilə bilər.</p>
+                <p data-lang="en">When required by the legislation of the Republic of Azerbaijan, information may be provided to relevant government authorities.</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Data Protection -->
+        <section class="section" data-section="5">
+            <div class="section-number">05</div>
+            <h2>
+                <span data-lang="az">Məlumatların Qorunması</span>
+                <span data-lang="en">Data Protection</span>
+            </h2>
+            <p data-lang="az">
+                Şəxsi məlumatlarınızın təhlükəsizliyini təmin etmək üçün müasir texniki və təşkilati tədbirlər görürük. Məlumatlar şifrələnmiş şəkildə saxlanılır və icazəsiz girişdən qorunur. Bununla belə, internetdə məlumat ötürülməsinin 100% təhlükəsiz olmasına zəmanət vermək mümkün deyil.
+            </p>
+            <p data-lang="en">
+                We implement modern technical and organizational measures to ensure the security of your personal data. Data is stored in encrypted form and protected from unauthorized access. However, we cannot guarantee 100% security of data transmission over the internet.
+            </p>
+        </section>
+
+        <!-- Section 6: Data Retention -->
+        <section class="section" data-section="6">
+            <div class="section-number">06</div>
+            <h2>
+                <span data-lang="az">Məlumatların Saxlanılma Müddəti</span>
+                <span data-lang="en">Data Retention</span>
+            </h2>
+            <p data-lang="az">
+                Şəxsi məlumatlarınız hesabınız aktiv olduğu müddətdə saxlanılır. Hesabınızı silmək istədiyiniz halda, bizimlə əlaqə saxlaya bilərsiniz və məlumatlarınız qanunvericiliyin tələb etdiyi müddət ərzində silinəcəkdir.
+            </p>
+            <p data-lang="en">
+                Your personal data is retained while your account remains active. If you wish to delete your account, you can contact us, and your data will be deleted within the period required by law.
+            </p>
+        </section>
+
+        <!-- Section 7: User Rights -->
+        <section class="section" data-section="7">
+            <div class="section-number">07</div>
+            <h2>
+                <span data-lang="az">İstifadəçi Hüquqları</span>
+                <span data-lang="en">User Rights</span>
+            </h2>
+            <p data-lang="az">Azərbaycan Respublikasının "Fərdi məlumatlar haqqında" Qanununa uyğun olaraq, aşağıdakı hüquqlara maliksiniz:</p>
+            <p data-lang="en">In accordance with the Law of the Republic of Azerbaijan "On Personal Data", you have the following rights:</p>
+            
+            <ul class="data-list" data-lang="az">
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+                    <span>Haqqınızda toplanan məlumatları öyrənmək</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+                    <span>Məlumatlarınızın düzəldilməsini tələb etmək</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                    <span>Məlumatlarınızın silinməsini tələb etmək</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></span>
+                    <span>Məlumatların işlənməsinə etiraz etmək</span>
+                </li>
+            </ul>
+
+            <ul class="data-list" data-lang="en">
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+                    <span>Access information collected about you</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+                    <span>Request correction of your data</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                    <span>Request deletion of your data</span>
+                </li>
+                <li>
+                    <span class="list-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></span>
+                    <span>Object to data processing</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 8: Age Restriction -->
+        <section class="section" data-section="8">
+            <div class="section-number">08</div>
+            <h2>
+                <span data-lang="az">Yaş Məhdudiyyəti</span>
+                <span data-lang="en">Age Restriction</span>
+            </h2>
+            <p data-lang="az">
+                Tətbiqimiz 18 yaşından yuxarı şəxslər üçün nəzərdə tutulub. Biz bilərəkdən 18 yaşından kiçik şəxslərdən məlumat toplamırıq. Əgər 18 yaşından kiçik bir şəxsin məlumatlarını topladığımızı aşkar etsək, bu məlumatları dərhal siləcəyik.
+            </p>
+            <p data-lang="en">
+                Our Application is intended for individuals over 18 years of age. We do not knowingly collect information from individuals under 18. If we discover that we have collected information from a person under 18, we will delete this information immediately.
+            </p>
+        </section>
+
+        <!-- Section 9: Changes -->
+        <section class="section" data-section="9">
+            <div class="section-number">09</div>
+            <h2>
+                <span data-lang="az">Məxfilik Siyasətində Dəyişikliklər</span>
+                <span data-lang="en">Changes to Privacy Policy</span>
+            </h2>
+            <p data-lang="az">
+                Bu Məxfilik Siyasətini vaxtaşırı yeniləyə bilərik. Hər hansı əhəmiyyətli dəyişiklik olduqda, Tətbiq vasitəsilə və ya e-poçt ilə sizi məlumatlandıracağıq. Dəyişikliklərdən sonra Tətbiqdən istifadə etməyə davam etməyiniz, yenilənmiş siyasəti qəbul etdiyiniz hesab olunur.
+            </p>
+            <p data-lang="en">
+                We may update this Privacy Policy from time to time. In case of any significant changes, we will notify you through the Application or by email. Your continued use of the Application after changes constitutes acceptance of the updated policy.
+            </p>
+        </section>
+
+        <!-- Section 10: Contact -->
+        <section class="section" data-section="10">
+            <div class="section-number">10</div>
+            <h2>
+                <span data-lang="az">Əlaqə Məlumatları</span>
+                <span data-lang="en">Contact Information</span>
+            </h2>
+            <p data-lang="az">Bu Məxfilik Siyasəti ilə bağlı hər hansı sualınız və ya narahatlığınız varsa, bizimlə əlaqə saxlaya bilərsiniz:</p>
+            <p data-lang="en">If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+            
+            <div class="contact-grid" data-lang="az">
+                <div class="contact-item">
+                    <div class="contact-label">Şirkət</div>
+                    <div class="contact-value">Rəqəmsal İnnovasiyalar Agentliyi MMC</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">E-poçt</div>
+                    <div class="contact-value"><a href="mailto:app.carcat.feedback@gmail.com">app.carcat.feedback@gmail.com</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Ölkə</div>
+                    <div class="contact-value">Azərbaycan Respublikası</div>
+                </div>
+            </div>
+
+            <div class="contact-grid" data-lang="en">
+                <div class="contact-item">
+                    <div class="contact-label">Company</div>
+                    <div class="contact-value">Digital Innovation Agency LLC</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value"><a href="mailto:app.carcat.feedback@gmail.com">app.carcat.feedback@gmail.com</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Country</div>
+                    <div class="contact-value">Republic of Azerbaijan</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">CarCat</div>
+            <p class="footer-text">
+                <span data-lang="az">© 2025 Rəqəmsal İnnovasiyalar Agentliyi MMC. Bütün hüquqlar qorunur.</span>
+                <span data-lang="en">© 2025 Digital Innovation Agency LLC. All rights reserved.</span>
+            </p>
+            <div class="footer-date">
+                <span data-lang="az">Son yenilənmə: Fevral 2025</span>
+                <span data-lang="en">Last updated: February 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switcher
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const html = document.documentElement;
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang-switch');
+                
+                // Update active button
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update HTML lang attribute
+                html.setAttribute('lang', lang);
+                
+                // Save preference
+                localStorage.setItem('carcat-lang', lang);
+            });
+        });
+
+        // Load saved language preference
+        const savedLang = localStorage.getItem('carcat-lang');
+        if (savedLang) {
+            html.setAttribute('lang', savedLang);
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang-switch') === savedLang);
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.section');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
